@@ -23,6 +23,8 @@
 		77F3805F2DF1AA57009A3C84 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3805E2DF1AA51009A3C84 /* EditViewController.swift */; };
 		77F380622DF1DFDD009A3C84 /* Unitily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380612DF1DFDA009A3C84 /* Unitily.swift */; };
 		77F380672DF1E516009A3C84 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380662DF1E513009A3C84 /* Protocols.swift */; };
+		77F3806D2DF1F1FF009A3C84 /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3806C2DF1F1FA009A3C84 /* MainBuilder.swift */; };
+		77F380712DF1F34C009A3C84 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380702DF1F349009A3C84 /* MainRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		77F3805E2DF1AA51009A3C84 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		77F380612DF1DFDA009A3C84 /* Unitily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unitily.swift; sourceTree = "<group>"; };
 		77F380662DF1E513009A3C84 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		77F3806C2DF1F1FA009A3C84 /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
+		77F380702DF1F349009A3C84 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +83,6 @@
 				77F380602DF1DFCE009A3C84 /* unitility */,
 				7781865C2DEF789600FBBC5A /* Resources */,
 				7781864C2DEC8B9B00FBBC5A /* Core */,
-				778186492DEC8B5200FBBC5A /* NetworkLayer */,
 				778186482DEC8B3B00FBBC5A /* Extensions */,
 				778186472DEC8B2200FBBC5A /* Supporting */,
 				7781863B2DEC8B1600FBBC5A /* Info.plist */,
@@ -105,13 +108,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		778186492DEC8B5200FBBC5A /* NetworkLayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetworkLayer;
-			sourceTree = "<group>";
-		};
 		7781864C2DEC8B9B00FBBC5A /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +121,8 @@
 		7781864D2DEC8E7000FBBC5A /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				77F380702DF1F349009A3C84 /* MainRouter.swift */,
+				77F3806C2DF1F1FA009A3C84 /* MainBuilder.swift */,
 				770566912DF0954200DC9B81 /* MainPresenter.swift */,
 				778186552DEC8FC200FBBC5A /* MainViewController.swift */,
 				778186532DEC8F0200FBBC5A /* TodoModel.swift */,
@@ -258,11 +256,13 @@
 				770566942DF0EC6C00DC9B81 /* EditPopup.swift in Sources */,
 				778186562DEC8FC200FBBC5A /* MainViewController.swift in Sources */,
 				778186612DEF84D800FBBC5A /* MainTableViewCell.swift in Sources */,
+				77F380712DF1F34C009A3C84 /* MainRouter.swift in Sources */,
 				770566922DF0954600DC9B81 /* MainPresenter.swift in Sources */,
 				770566902DF0944700DC9B81 /* MainInterator.swift in Sources */,
 				7781865B2DEF783B00FBBC5A /* AppColors.swift in Sources */,
 				778186542DEC8F1100FBBC5A /* TodoModel.swift in Sources */,
 				77F380672DF1E516009A3C84 /* Protocols.swift in Sources */,
+				77F3806D2DF1F1FF009A3C84 /* MainBuilder.swift in Sources */,
 				77F3805F2DF1AA57009A3C84 /* EditViewController.swift in Sources */,
 				77F380622DF1DFDD009A3C84 /* Unitily.swift in Sources */,
 				7781864B2DEC8B8D00FBBC5A /* UIColor+Extension.swift in Sources */,

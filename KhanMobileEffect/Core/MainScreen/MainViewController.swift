@@ -1,14 +1,15 @@
 import UIKit
 import SnapKit
 
+protocol MainViewProtocol: AnyObject {
+    func reloadData(data: [TodoModel])
+    var presenter: MainPresenter? {get set}
+}
+
 class MainViewController: UIViewController {
     
-    var tasks = [
-        TodoModel(title: "Something", todo: "Something"),
-        TodoModel(title: "Another", todo: "Another task"),
-        TodoModel(title: "TODO", todo: "Important todo"),
-        TodoModel(title: "Chores", todo: "Clean up the kitchen")
-    ]
+    var tasks: [TodoModel] = []
+    var presenter: MainPresenter?
     
     var filteredTasks: [TodoModel] = []
     var isFiltering: Bool {
@@ -76,6 +77,8 @@ class MainViewController: UIViewController {
         setupConstraints()
         setupDelegates()
         editButton.addTarget(self, action: #selector(toggleEditMode), for: .touchUpInside)
+        
+        presenter?.viewDidLoad()
     }
     
     func setupTitle() {
@@ -129,14 +132,10 @@ class MainViewController: UIViewController {
     }
     
     @objc func toggleEditMode() {
-//        tableView.setEditing(!tableView.isEditing, animated: true)
-//        let image = tableView.isEditing ? UIImage(systemName: "checkmark") : UIImage(named: "edit")
-//        editButton.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
-//        editButton.tintColor = .yellow
-        navigationController?.pushViewController(EditViewController(endAction: { [self] model in
+        presenter?.navigateToEdit(vc: EditViewController(endAction: { [self] model in
             self.tasks.append(model)
             tableView.reloadData()
-        }), animated: true)
+        }))
     }
     
     func filterTasks(with query: String) {
@@ -201,10 +200,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let task = currentTask(at: indexPath)
         guard let actualIndex = actualIndex(for: task) else { return }
 
-        navigationController?.pushViewController(EditViewController(todo: task, endAction: { [weak self] updatedTask in
+        presenter?.navigateToEdit(vc: EditViewController(todo: task, endAction: { [weak self] updatedTask in
             self?.tasks[actualIndex] = updatedTask
             self?.filterTasks(with: self?.searchBar.text ?? "")
-        }), animated: true)
+        }))
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -237,16 +236,16 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
         let controller = EditPopup(
             editPressed: { [weak self] in
-                self?.navigationController?.pushViewController(EditViewController(todo: task, endAction: { updatedTask in
+                self?.presenter?.navigateToEdit(vc: EditViewController(todo: task, endAction: { updatedTask in
                     self?.tasks[actualIndex] = updatedTask
                     self?.filterTasks(with: self?.searchBar.text ?? "")
-                }), animated: false)
+                }))
             },
             sharePressed: { [weak self] in
                 let textToShare = "\(task.title ?? "")\n\n\(task.todo)\n\nДата: \(task.date ?? "")"
                 let activityVC = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
                 activityVC.popoverPresentationController?.sourceView = self?.view
-                self?.present(activityVC, animated: true)
+                self?.presenter?.presentView(vc: activityVC)
             },
             deletePressed: { [weak self] in
                 guard let self = self else {return}
@@ -257,6 +256,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         )
 
         controller.modalPresentationStyle = .overFullScreen
-        present(controller, animated: false)
+        presenter?.presentView(vc: controller)
+    }
+}
+
+extension MainViewController: MainViewProtocol {
+    func reloadData(data: [TodoModel]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            self.tasks = data
+            self.amountLabel.text = "\(self.tasks.count) Задач"
+            self.tableView.reloadData()
+        }
     }
 }

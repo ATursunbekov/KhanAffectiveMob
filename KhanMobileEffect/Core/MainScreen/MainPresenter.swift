@@ -5,16 +5,25 @@
 //  Created by Alikhan Tursunbekov on 4/6/25.
 //
 
+import UIKit
+
+protocol MainPresenterProtocol {
+    func viewDidLoad()
+    func reloadData(fetchedData: [TodoModel])
+    func navigateToEdit(vc: UIViewController)
+    func presentView(vc: UIViewController)
+}
+
 class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
-    var interactor: MainInteractorProtocol
+    var interactor: MainInteratorProtocol
     var router: MainRouterProtocol
 
-    private var allTodos: [TodoModel] = []
-    private var filteredTodos: [TodoModel] = []
-    private var isFiltering = false
+    var allTodos: [TodoModel] = []
+    var filteredTodos: [TodoModel] = []
+    var isFiltering = false
 
-    init(view: MainViewProtocol, interactor: MainInteractorProtocol, router: MainRouterProtocol) {
+    init(view: MainViewProtocol, interactor: MainInteratorProtocol, router: MainRouterProtocol) {
         self.view = view
         self.interactor = interactor
         self.router = router
@@ -23,33 +32,16 @@ class MainPresenter: MainPresenterProtocol {
     func viewDidLoad() {
         interactor.fetchTodos()
     }
-
-    func numberOfTasks() -> Int {
-        return isFiltering ? filteredTodos.count : allTodos.count
+    
+    func reloadData(fetchedData: [TodoModel]) {
+        view?.reloadData(data: fetchedData)
     }
-
-    func task(at index: Int) -> TodoModel {
-        return isFiltering ? filteredTodos[index] : allTodos[index]
+    
+    func navigateToEdit(vc: UIViewController) {
+        router.navigateToEdit(vc: vc)
     }
-
-    func didSearch(query: String) {
-        isFiltering = !query.isEmpty
-        filteredTodos = allTodos.filter {
-            $0.title.lowercased().contains(query.lowercased()) ||
-            $0.todo.lowercased().contains(query.lowercased())
-        }
-        view?.showTodos(isFiltering ? filteredTodos : allTodos)
-    }
-
-    func didSelectTask(at index: Int) {
-        let todo = task(at: index)
-        router.navigateToEdit(todo: todo)
-    }
-}
-
-extension MainPresenter: MainInteractorOutput {
-    func didFetchTodos(_ todos: [TodoModel]) {
-        self.allTodos = todos
-        view?.showTodos(todos)
+    
+    func presentView(vc: UIViewController) {
+        router.presentView(view: vc)
     }
 }
