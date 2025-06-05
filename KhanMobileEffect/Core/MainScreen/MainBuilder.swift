@@ -8,6 +8,8 @@
 import UIKit
 
 class MainModuleBuilder {
+    static var sharedInteractor: MainInteratorProtocol?
+    
     static func build() -> UIViewController {
         let view = MainViewController()
         let interactor = MainInteractor()
@@ -17,6 +19,8 @@ class MainModuleBuilder {
         view.presenter = presenter
         interactor.presenter = presenter
         router.viewController = view
+        
+        sharedInteractor = interactor
 
         return view
     }

@@ -25,6 +25,7 @@
 		77F380672DF1E516009A3C84 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380662DF1E513009A3C84 /* Protocols.swift */; };
 		77F3806D2DF1F1FF009A3C84 /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3806C2DF1F1FA009A3C84 /* MainBuilder.swift */; };
 		77F380712DF1F34C009A3C84 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380702DF1F349009A3C84 /* MainRouter.swift */; };
+		77F380762DF1F7F5009A3C84 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77F380742DF1F7F5009A3C84 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		77F380662DF1E513009A3C84 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		77F3806C2DF1F1FA009A3C84 /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
 		77F380702DF1F349009A3C84 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		77F380752DF1F7F5009A3C84 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		778186402DEC8B1600FBBC5A /* KhanMobileEffect */ = {
 			isa = PBXGroup;
 			children = (
+				77F380732DF1F7C2009A3C84 /* DataManager */,
 				77F380602DF1DFCE009A3C84 /* unitility */,
 				7781865C2DEF789600FBBC5A /* Resources */,
 				7781864C2DEC8B9B00FBBC5A /* Core */,
@@ -174,6 +177,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		77F380732DF1F7C2009A3C84 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				77F380742DF1F7F5009A3C84 /* DataModel.xcdatamodeld */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,6 +271,7 @@
 				770566922DF0954600DC9B81 /* MainPresenter.swift in Sources */,
 				770566902DF0944700DC9B81 /* MainInterator.swift in Sources */,
 				7781865B2DEF783B00FBBC5A /* AppColors.swift in Sources */,
+				77F380762DF1F7F5009A3C84 /* DataModel.xcdatamodeld in Sources */,
 				778186542DEC8F1100FBBC5A /* TodoModel.swift in Sources */,
 				77F380672DF1E516009A3C84 /* Protocols.swift in Sources */,
 				77F3806D2DF1F1FF009A3C84 /* MainBuilder.swift in Sources */,
@@ -497,6 +509,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		77F380742DF1F7F5009A3C84 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				77F380752DF1F7F5009A3C84 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 77F380752DF1F7F5009A3C84 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 778186182DEC878B00FBBC5A /* Project object */;
 }

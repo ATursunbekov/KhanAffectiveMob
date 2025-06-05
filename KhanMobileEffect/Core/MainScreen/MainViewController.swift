@@ -135,6 +135,7 @@ class MainViewController: UIViewController {
         presenter?.navigateToEdit(vc: EditViewController(endAction: { [self] model in
             self.tasks.append(model)
             tableView.reloadData()
+            self.presenter?.update(data: tasks)
         }))
     }
     
@@ -190,6 +191,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             if let actualIndex = self.actualIndex(for: task) {
                 self.tasks[actualIndex].completed.toggle()
                 cell.changeVal(isDone: self.tasks[actualIndex].completed)
+                self.presenter?.update(data: tasks)
             }
         }
 
@@ -201,8 +203,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         guard let actualIndex = actualIndex(for: task) else { return }
 
         presenter?.navigateToEdit(vc: EditViewController(todo: task, endAction: { [weak self] updatedTask in
-            self?.tasks[actualIndex] = updatedTask
-            self?.filterTasks(with: self?.searchBar.text ?? "")
+            guard let self = self else {return}
+            self.tasks[actualIndex] = updatedTask
+            self.filterTasks(with: self.searchBar.text ?? "")
+            self.presenter?.update(data: self.tasks)
         }))
     }
     
@@ -214,6 +218,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             tasks.remove(at: actualIndex)
             filterTasks(with: searchBar.text ?? "")
             amountLabel.text = "\(tasks.count) Задач"
+            presenter?.update(data: self.tasks)
         }
     }
     
@@ -239,6 +244,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 self?.presenter?.navigateToEdit(vc: EditViewController(todo: task, endAction: { updatedTask in
                     self?.tasks[actualIndex] = updatedTask
                     self?.filterTasks(with: self?.searchBar.text ?? "")
+                    self?.presenter?.update(data: self?.tasks ?? [])
                 }))
             },
             sharePressed: { [weak self] in
@@ -252,6 +258,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 self.tasks.remove(at: actualIndex)
                 self.filterTasks(with: self.searchBar.text ?? "")
                 self.amountLabel.text = "\(self.tasks.count) Задач"
+                self.presenter?.update(data: self.tasks)
             }
         )
 

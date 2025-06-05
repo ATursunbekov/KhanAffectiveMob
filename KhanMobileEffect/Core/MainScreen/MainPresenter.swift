@@ -12,6 +12,7 @@ protocol MainPresenterProtocol {
     func reloadData(fetchedData: [TodoModel])
     func navigateToEdit(vc: UIViewController)
     func presentView(vc: UIViewController)
+    func update(data: [TodoModel])
 }
 
 class MainPresenter: MainPresenterProtocol {
@@ -43,5 +44,10 @@ class MainPresenter: MainPresenterProtocol {
     
     func presentView(vc: UIViewController) {
         router.presentView(view: vc)
+    }
+    
+    func update(data: [TodoModel]) {
+        interactor.updateData(data: data)
+        interactor.saveToCoreData(data)
     }
 }

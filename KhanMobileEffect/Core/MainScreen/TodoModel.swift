@@ -23,6 +23,13 @@ struct TodoModel {
         self.date = convertCurrentDateToString()
         self.completed = dto.completed
     }
+    
+    init(title: String, todo: String, date: String, completed: Bool) {
+            self.title = title
+            self.todo = todo
+            self.date = date
+            self.completed = completed
+        }
 }
 
 struct TodoDTO: Decodable {
