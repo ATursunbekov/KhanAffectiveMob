@@ -22,7 +22,6 @@
 		778186612DEF84D800FBBC5A /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778186602DEF84D800FBBC5A /* MainTableViewCell.swift */; };
 		77F3805F2DF1AA57009A3C84 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3805E2DF1AA51009A3C84 /* EditViewController.swift */; };
 		77F380622DF1DFDD009A3C84 /* Unitily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380612DF1DFDA009A3C84 /* Unitily.swift */; };
-		77F380672DF1E516009A3C84 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380662DF1E513009A3C84 /* Protocols.swift */; };
 		77F3806D2DF1F1FF009A3C84 /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3806C2DF1F1FA009A3C84 /* MainBuilder.swift */; };
 		77F380712DF1F34C009A3C84 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F380702DF1F349009A3C84 /* MainRouter.swift */; };
 		77F380762DF1F7F5009A3C84 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77F380742DF1F7F5009A3C84 /* DataModel.xcdatamodeld */; };
@@ -45,7 +44,6 @@
 		778186602DEF84D800FBBC5A /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		77F3805E2DF1AA51009A3C84 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		77F380612DF1DFDA009A3C84 /* Unitily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unitily.swift; sourceTree = "<group>"; };
-		77F380662DF1E513009A3C84 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		77F3806C2DF1F1FA009A3C84 /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
 		77F380702DF1F349009A3C84 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		77F380752DF1F7F5009A3C84 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 		7781864C2DEC8B9B00FBBC5A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				77F380652DF1E509009A3C84 /* Protocols */,
 				77F3805D2DF1AA43009A3C84 /* EditScreen */,
 				7781864D2DEC8E7000FBBC5A /* MainScreen */,
 			);
@@ -167,14 +164,6 @@
 				77F380612DF1DFDA009A3C84 /* Unitily.swift */,
 			);
 			path = unitility;
-			sourceTree = "<group>";
-		};
-		77F380652DF1E509009A3C84 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				77F380662DF1E513009A3C84 /* Protocols.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		77F380732DF1F7C2009A3C84 /* DataManager */ = {
@@ -273,7 +262,6 @@
 				7781865B2DEF783B00FBBC5A /* AppColors.swift in Sources */,
 				77F380762DF1F7F5009A3C84 /* DataModel.xcdatamodeld in Sources */,
 				778186542DEC8F1100FBBC5A /* TodoModel.swift in Sources */,
-				77F380672DF1E516009A3C84 /* Protocols.swift in Sources */,
 				77F3806D2DF1F1FF009A3C84 /* MainBuilder.swift in Sources */,
 				77F3805F2DF1AA57009A3C84 /* EditViewController.swift in Sources */,
 				77F380622DF1DFDD009A3C84 /* Unitily.swift in Sources */,

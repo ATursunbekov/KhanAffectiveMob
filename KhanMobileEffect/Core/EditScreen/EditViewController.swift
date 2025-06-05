@@ -60,9 +60,17 @@ class EditViewController: UIViewController {
         return label
     }()
     
+    lazy var backButton: UIButton = {
+        let backButton = UIButton(type: .system)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
+        backButton.setTitle(" Назад", for: .normal)
+        backButton.tintColor = UIColor(hex: "#FED702")
+        backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
+        return backButton
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitle()
         setupConstraints()
         setupPlaceholders()
         
@@ -75,30 +83,25 @@ class EditViewController: UIViewController {
         
         titleTextView.delegate = self
         descTextView.delegate = self
-    }
-    
-    func setupTitle() {
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .black
-        navigationItem.hidesBackButton = true
-
-        let backButton = UIButton(type: .system)
-        backButton.setImage(UIImage(named: "back"), for: .normal)
-        backButton.setTitle(" Назад", for: .normal)
-        backButton.tintColor = UIColor(hex: "#FED702")
-        backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
         
-        let backBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationItem.leftBarButtonItem = backBarButtonItem
     }
     
     func setupConstraints() {
+        view.addSubview(backButton)
         view.addSubview(titleTextView)
         view.addSubview(dateLabel)
         view.addSubview(descTextView)
         
+        backButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(8)
+            make.top.equalToSuperview().offset(65)
+        }
+        
         titleTextView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(20)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(backButton.snp.bottom).offset(25)
             make.height.equalTo(80)
         }
 

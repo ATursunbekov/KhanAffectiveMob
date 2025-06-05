@@ -15,6 +15,14 @@ class MainViewController: UIViewController {
     var isFiltering: Bool {
         return !(searchBar.text?.isEmpty ?? true)
     }
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Задачи"
+        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
+        label.textColor = .white
+        return label
+    }()
 
     private let searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -73,27 +81,25 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitle()
+        navigationController?.navigationBar.isHidden = true
+        view.backgroundColor = .black
         setupConstraints()
         setupDelegates()
         editButton.addTarget(self, action: #selector(toggleEditMode), for: .touchUpInside)
-        
         presenter?.viewDidLoad()
     }
     
-    func setupTitle() {
-        title = "Задачи"
-        view.backgroundColor = .black
-        navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-    }
-    
     func setupConstraints() {
+        
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(69)
+        }
+        
         view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.top.equalTo(titleLabel.snp.bottom).offset(13)
             make.left.right.equalToSuperview()
             make.height.equalTo(36)
         }
@@ -171,7 +177,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering ? filteredTasks.count : tasks.count
+        var temp = isFiltering ? filteredTasks.count : tasks.count
+        amountLabel.text = "\(temp) Задач"
+        return temp
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

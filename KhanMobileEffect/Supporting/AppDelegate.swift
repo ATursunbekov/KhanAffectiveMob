@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print()
         (MainModuleBuilder.sharedInteractor as? MainInteractor)?.saveOnExit()
     }
 
